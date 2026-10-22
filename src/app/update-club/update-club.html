@@ -1,0 +1,39 @@
+<div class="container">
+  <div>
+    <h2>Modifier un Club :</h2>
+  </div>
+  <form>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Club</label>
+      <input readonly type="text" [(ngModel)]="currentClub.idClub" name="idClub" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Club</label>
+      <input type="text" [(ngModel)]="currentClub.nomClub" name="nomClub" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Ville Club</label>
+      <input type="text" [(ngModel)]="currentClub.villeClub" name="villeClub" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Budget Club</label>
+      <input type="number" [(ngModel)]="currentClub.budgetClub" name="budgetClub" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date création</label>
+      <input type="date" [ngModel]="currentClub.dateCreation | date: 'yyyy-MM-dd'"
+             (ngModelChange)="currentClub.dateCreation = $event" name="dateCreation" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Ligue</label>
+      <select class="form-control form-control-lg" id="idLigue" name="idLigue" [(ngModel)]="updatedLigueId">
+        @for (ligue of ligues; track ligue.idLigue) {
+          <option [value]="ligue.idLigue"> {{ligue.nomLigue}} </option>
+        }
+      </select>
+    </div>
+    <div class="mt-2">
+      <button type="submit" (click)="updateClub()" class="btn btn-success">Modifier</button>
+    </div>
+  </form>
+</div>

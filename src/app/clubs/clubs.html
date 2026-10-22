@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>N°</th><th>Id</th><th>Nom</th><th>Ville</th><th>Budget</th><th>Date Création</th><th>Ligue</th><th colspan="2">Actions</th>
+        </tr>
+        @for (club of clubs; track club.idClub; let index = $index) {
+          <tbody>
+            <tr>
+              <td>{{index}}</td>
+              <td>{{club.idClub}}</td>
+              <td>{{club.nomClub}}</td>
+              <td>{{club.villeClub}}</td>
+              <td>{{club.budgetClub}}</td>
+              <td>{{club.dateCreation | date:'dd/MM/yyyy'}}</td>
+              <td>{{club.ligue.nomLigue}}</td>
+              <td><a class="btn btn-danger" (click)="supprimerClub(club)">Supprimer</a></td>
+              <td><a class="btn btn-success" [routerLink]="['/updateClub', club.idClub]">Modifier</a></td>
+            </tr>
+          </tbody>
+        } @empty {
+          <h1>Aucun club trouvé !</h1>
+        }
+      </table>
+    </div>
+  </div>
+</div>

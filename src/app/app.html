@@ -7,7 +7,9 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clubs</a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" routerLink="/add-club">Ajouter</a></li>
+        @if (authService.isAdmin()) {
+          <li><a class="dropdown-item" routerLink="/add-club">Ajouter</a></li>
+        }
         <li><a class="dropdown-item" routerLink="/clubs">Lister</a></li>
         <li><a class="dropdown-item" routerLink="/rechercheParLigue">Recherche Par Ligue</a></li>
         <li><a class="dropdown-item" routerLink="/rechercheParNom">Recherche Par Nom (keyup)</a></li>
@@ -17,10 +19,15 @@
   </ul>
   <ul class="navbar-nav ms-auto">
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">[username]</a>
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+        [{{ authService.loggedUser }}]
+      </a>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="#">login</a></li>
-        <li><a class="dropdown-item" href="#">logout</a></li>
+        @if (!authService.isloggedIn) {
+          <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+        } @else {
+          <li><a class="dropdown-item" role="button" (click)="onLogout()">Logout</a></li>
+        }
         <li><a class="dropdown-item" href="#">Profile</a></li>
       </ul>
     </li>

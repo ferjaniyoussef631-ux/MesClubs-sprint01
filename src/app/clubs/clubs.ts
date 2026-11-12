@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Club } from '../model/club.model';
 import { ClubService } from '../services/club.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-clubs',
@@ -12,7 +13,7 @@ import { ClubService } from '../services/club.service';
 export class Clubs implements OnInit {
   clubs: Club[];
 
-  constructor(private clubService: ClubService) {
+  constructor(private clubService: ClubService, public authService: AuthService) {
     this.clubs = clubService.listeClubs();
   }
 
